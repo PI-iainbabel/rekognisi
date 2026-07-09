@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rekognisi Penelitian · Psikologi Islam</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            50: '#E8EDF8', 100: '#C5D2F0', 200: '#9DB5E8',
+                            300: '#6F95E0', 400: '#4F7FD8', 500: '#2A5CC4',
+                            600: '#1A3F8F', 700: '#122B6A', 800: '#0B1D45',
+                            900: '#060F28', 950: '#030714',
+                        },
+                        gold: '#D4AF37',
+                        emerald: '#34D399',
+                        sky: '#60A5FA',
+                        rose: '#FB7185',
+                        amber: '#FBBF24',
+                        purple: '#A78BFA',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #060F28;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .glass-nav {
+            background: rgba(11, 29, 69, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(79, 143, 255, 0.15);
+        }
+
+        .btn-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+        }
+        .btn-nav-home {
+            background: rgba(255, 255, 255, 0.04);
+            color: #94a3b8;
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+        .btn-nav-home:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+        .btn-nav-tree {
+            background: rgba(82, 183, 136, 0.06);
+            color: #52B788;
+            border-color: rgba(82, 183, 136, 0.1);
+        }
+        .btn-nav-tree:hover {
+            background: rgba(82, 183, 136, 0.12);
+            border-color: #52B788;
+            transform: translateY(-2px);
+        }
+        .btn-nav-drive {
+            background: rgba(26, 115, 232, 0.08);
+            color: #4F7FD8;
+            border-color: rgba(26, 115, 232, 0.1);
+        }
+        .btn-nav-drive:hover {
+            background: rgba(26, 115, 232, 0.15);
+            border-color: #4F7FD8;
+            transform: translateY(-2px);
+        }
+
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 4px;
+            font-size: 0.8rem;
+            padding: 8px 0;
+        }
+        .breadcrumb a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .breadcrumb a:hover {
+            color: #D4AF37;
+        }
+        .breadcrumb .separator {
+            color: #475569;
+            font-size: 0.6rem;
+            margin: 0 2px;
+        }
+        .breadcrumb .current {
+            color: #e2e8f0;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .breadcrumb .current i {
+            color: #D4AF37;
+            font-size: 0.9rem;
+        }
+
+        .card-glass {
+            background: rgba(11, 29, 69, 0.4);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .card-glass:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-card {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .stat-card:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .sub-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .sub-card {
+            background: rgba(11, 29, 69, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px 20px 28px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+        }
+        .sub-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+        .sub-card .icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 14px;
+        }
+        .sub-card .icon-wrap.gold {
+            background: rgba(212, 175, 55, 0.12);
+            color: #D4AF37;
+        }
+        .sub-card .icon-wrap.emerald {
+            background: rgba(52, 211, 153, 0.12);
+            color: #34d399;
+        }
+        .sub-card .icon-wrap.sky {
+            background: rgba(96, 165, 250, 0.12);
+            color: #60a5fa;
+        }
+        .sub-card .icon-wrap.purple {
+            background: rgba(167, 139, 250, 0.12);
+            color: #a78bfa;
+        }
+        .sub-card .icon-wrap.rose {
+            background: rgba(251, 113, 133, 0.12);
+            color: #fb7185;
+        }
+        .sub-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .sub-card .subtitle {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        .sub-card p {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        .sub-card .arrow {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #475569;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sub-card:hover .arrow {
+            color: #D4AF37;
+            transform: translateX(4px);
+        }
+
+        .badge-tema {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.55rem;
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.08);
+            color: #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 40px;
+        }
+
+        .collab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .collab-item {
+            background: rgba(11, 29, 69, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px 18px;
+            border-left: 3px solid #D4AF37;
+            transition: all 0.3s ease;
+        }
+        .collab-item:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateX(4px);
+        }
+        .collab-item .mitra {
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .collab-item .kegiatan {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+        .collab-item .tahun {
+            font-size: 0.65rem;
+            color: #D4AF37;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content { padding: 16px; }
+            .sub-card-grid { grid-template-columns: 1fr; }
+            .collab-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .collab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================================== -->
+    <!-- NAVBAR DENGAN BREADCRUMB                                   -->
+    <!-- ========================================================== -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between py-3 gap-2">
+
+                <div class="breadcrumb">
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/struktur-konten.html" title="Kembali ke Home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/struktur-konten.html" title="Kembali ke Diferensiasi Misi">
+                        <i class="fas fa-flag"></i> Diferensiasi Misi
+                    </a>
+                    <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                    <span class="current">
+                        <i class="fas fa-flask"></i> Rekognisi Penelitian
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap">
+                    <a href="https://drive.google.com/drive/u/1/folders/1onnzbs8YOHW2hcPVniMSehyzXvtEkyEN" target="_blank" class="btn-nav btn-nav-drive">
+                        <i class="fas fa-folder-open"></i> Drive Bukti
+                    </a>
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/struktur-konten.html" class="btn-nav btn-nav-tree" title="Pohon Pengetahuan">
+                        <i class="fas fa-tree"></i> Tree
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================================== -->
+    <!-- SPACER                                                     -->
+    <!-- ========================================================== -->
+    <div class="pt-20"></div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- ===== HERO ===== -->
+        <div class="mb-8 text-center">
+            <div class="inline-block px-4 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold tracking-wider mb-4">
+                <i class="fas fa-flask mr-2"></i> REKOGNISI PENELITIAN
+            </div>
+            <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-white flex items-center justify-center gap-3">
+                <i class="fas fa-microscope text-gold"></i> Rekognisi <span class="text-gold">Penelitian</span>
+            </h1>
+            <p class="mt-3 text-slate-400 max-w-2xl mx-auto text-sm">
+                Publikasi, laboratorium riset, kolaborasi, dan pengakuan atas kegiatan penelitian dosen dan mahasiswa Prodi Psikologi Islam
+            </p>
+            <div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
+                <span class="px-4 py-1.5 rounded-full bg-navy-800/60 border border-white/5 text-slate-300">
+                    <i class="fas fa-book-open text-gold mr-1.5"></i> Jurnal SINTA 3
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-navy-800/60 border border-white/5 text-slate-300">
+                    <i class="fas fa-flask text-gold mr-1.5"></i> Behavioral Lab
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-emerald-400/20 border border-emerald-400/30 text-emerald-300">
+                    <i class="fas fa-handshake mr-1.5"></i> 5+ Mitra Riset
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-sky-400/20 border border-sky-400/30 text-sky-300">
+                    <i class="fas fa-file-alt mr-1.5"></i> 10+ Publikasi
+                </span>
+            </div>
+        </div>
+
+        <!-- ===== STATISTIK ===== -->
+        <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-gold">Jurnal</div>
+                <div class="text-xs text-slate-400">SINTA 3 Terakreditasi</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-sky-400">15+</div>
+                <div class="text-xs text-slate-400">Produk Digital Lab</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-emerald-400">6</div>
+                <div class="text-xs text-slate-400">Mitra Kerjasama</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-amber-400">583+</div>
+                <div class="text-xs text-slate-400">Total Sitasi (SINTA)</div>
+            </div>
+        </section>
+</section>
+
+        <!-- ===== JURNAL PSYCHOSOPHIA ===== -->
+        <section class="card-glass p-6 border-gold/10 mb-8">
+            <div class="flex flex-col md:flex-row items-start gap-6">
+                <div class="flex-1">
+                    <h3 class="font-heading font-bold text-white text-lg flex items-center gap-2">
+                        <i class="fas fa-book-open text-gold"></i> Psychosophia: Journal of Psychology, Religion and Humanity
+                    </h3>
+                    <div class="flex flex-wrap gap-2 mt-1 mb-3">
+                        <span class="badge-tema">SINTA 3</span>
+                        <span class="badge-tema" style="background:rgba(52,211,153,0.08);color:#34d399;border-color:rgba(52,211,153,0.15);">Terakreditasi</span>
+                        <span class="badge-tema" style="background:rgba(96,165,250,0.08);color:#60a5fa;border-color:rgba(96,165,250,0.15);">ISSN: 2964-2124</span>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        Jurnal ilmiah yang diterbitkan oleh Program Studi Psikologi Islam IAIN Syaikh Abdurrahman Siddik Bangka Belitung.
+                        Memfokuskan pada publikasi riset di bidang psikologi, agama, dan kemanusiaan dengan pendekatan multidisiplin.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://rumahjurnal.iainsasbabel.ac.id/psc" target="_blank" class="btn-nav btn-nav-drive text-sm">
+                            <i class="fas fa-arrow-right"></i> Kunjungi Laman Jurnal
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-shrink-0 bg-navy-800/30 rounded-xl p-6 text-center border border-white/5 w-full md:w-48">
+                    <div class="text-5xl font-bold text-gold">Ψ</div>
+                    <div class="text-xs text-slate-400 mt-2">Psychosophia</div>
+                    <div class="text-[10px] text-slate-500">SINTA 3</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PSYCHOSOPHIA BEHAVIORAL LAB ===== -->
+        <section class="card-glass p-6 border-gold/10 mb-8">
+            <h3 class="font-heading font-bold text-white text-lg mb-3 flex items-center gap-2">
+                <i class="fas fa-flask text-gold"></i> Psychosophia Behavioral Lab
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                Laboratorium riset perilaku dan intervensi sosial yang mengintegrasikan penelitian, pengembangan alat ukur,
+                dan inovasi digital berbasis sains perilaku. Menghasilkan berbagai produk riset seperti alat asesmen,
+                simulator perilaku, dan buku saku intervensi.
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-2">
+                <div class="bg-navy-800/30 rounded-xl p-3 text-center border border-white/5">
+                    <div class="text-xl">🧭</div>
+                    <div class="text-xs text-slate-300 mt-1">Kompas Kampus</div>
+                </div>
+                <div class="bg-navy-800/30 rounded-xl p-3 text-center border border-white/5">
+                    <div class="text-xl">🤖</div>
+                    <div class="text-xs text-slate-300 mt-1">Teman Sophia</div>
+                </div>
+                <div class="bg-navy-800/30 rounded-xl p-3 text-center border border-white/5">
+                    <div class="text-xl">📊</div>
+                    <div class="text-xs text-slate-300 mt-1">Radar Sosial</div>
+                </div>
+                <div class="bg-navy-800/30 rounded-xl p-3 text-center border border-white/5">
+                    <div class="text-xl">⚡</div>
+                    <div class="text-xs text-slate-300 mt-1">Moral Disengagement Hub</div>
+                </div>
+                <div class="bg-navy-800/30 rounded-xl p-3 text-center border border-white/5">
+                    <div class="text-xl">📐</div>
+                    <div class="text-xs text-slate-300 mt-1">Social Norms Simulator</div>
+                </div>
+                <div class="bg-navy-800/30 rounded-xl p-3 text-center border border-white/5">
+                    <div class="text-xl">📘</div>
+                    <div class="text-xs text-slate-300 mt-1">Buku Saku Digital</div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <a href="https://pi-iainbabel.github.io/psychosophia-portfolio/" target="_blank" class="btn-nav btn-nav-drive text-sm">
+                    <i class="fas fa-arrow-right"></i> Lihat Selengkapnya di Portfolio
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== KERJASAMA PENELITIAN ===== -->
+        <section class="card-glass p-6 border-gold/10 mb-8">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+                <h3 class="font-heading font-bold text-white text-sm flex items-center gap-2">
+                    <i class="fas fa-handshake text-gold"></i> Kerjasama Penelitian &amp; Pendampingan Jurnal
+                </h3>
+                <a href="https://drive.google.com/drive/u/1/folders/1GlugtLcd-Z4Vr97dSSUiZLZiA4jXUbFL" target="_blank" class="btn-nav btn-nav-drive text-xs">
+                    <i class="fas fa-folder-open"></i> Drive Bukti Kerjasama
+                </a>
+            </div>
+            <div class="collab-grid">
+                <div class="collab-item">
+                    <div class="mitra">STISIPOL Pahlawan 12</div>
+                    <div class="kegiatan">Pendampingan Akreditasi Jurnal Ilmiah LPPM</div>
+                    <div class="tahun">2023</div>
+                </div>
+                <div class="collab-item">
+                    <div class="mitra">UIN Raden Fatah Palembang</div>
+                    <div class="kegiatan">Kerja sama Penelitian (LPPM IAIN SAS & LPPM UIN Rafa)</div>
+                    <div class="tahun">2023</div>
+                </div>
+                <div class="collab-item">
+                    <div class="mitra">Universitas Muhammadiyah Purwokerto</div>
+                    <div class="kegiatan">International Seminar on Psychology (ISPsy) & Publikasi Psychosophia</div>
+                    <div class="tahun">2022–2023</div>
+                </div>
+                <div class="collab-item">
+                    <div class="mitra">IAIN Kudus</div>
+                    <div class="kegiatan">Publikasi Jurnal PALASTREN (Sinta 2)</div>
+                    <div class="tahun">2025</div>
+                </div>
+                <div class="collab-item">
+                    <div class="mitra">APPI-HIMPSI</div>
+                    <div class="kegiatan">Temu Ilmiah Nasional (Temilnas)</div>
+                    <div class="tahun">2024</div>
+                </div>
+                <div class="collab-item">
+                    <div class="mitra">AICOIIS / ICOPSY</div>
+                    <div class="kegiatan">Konferensi Internasional (Presenter & Awardee)</div>
+                    <div class="tahun">2024</div>
+                </div>
+            </div>
+        </section>
+        <!-- ===== SUB-CARD NAVIGASI ===== -->
+        <section class="card-glass p-6 border-gold/10 mb-8">
+            <h3 class="font-heading font-bold text-white text-sm mb-4 flex items-center gap-2">
+                <i class="fas fa-compass text-gold"></i> Jelajahi Rekognisi Penelitian
+            </h3>
+            <div class="sub-card-grid">
+
+                <!-- 1. Publikasi Dosen -->
+                <a href="https://pi-iainbabel.github.io/penelitian/publikasi-dprps.html" target="_blank" class="sub-card">
+                    <div class="icon-wrap gold"><i class="fas fa-user-graduate"></i></div>
+                    <h3>Publikasi Dosen</h3>
+                    <div class="subtitle">Karya Ilmiah &amp; Sitasi</div>
+                    <p>Rekapitulasi publikasi dosen tetap berdasarkan data SINTA, Google Scholar, dan Scopus.</p>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i> Buka Halaman</div>
+                </a>
+
+                <!-- 2. Luaran Penelitian -->
+                <a href="https://pi-iainbabel.github.io/penelitian/luaran-penelitian.html" target="_blank" class="sub-card">
+                    <div class="icon-wrap sky"><i class="fas fa-file-alt"></i></div>
+                    <h3>Luaran Penelitian</h3>
+                    <div class="subtitle">Buku, HKI, Laporan Riset</div>
+                    <p>Rekapitulasi luaran penelitian dosen dan mahasiswa (buku, HKI, laporan riset).</p>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i> Buka Halaman</div>
+                </a>
+
+                <!-- 3. Kolaborasi Dosen-Mahasiswa -->
+                <a href="https://pi-iainbabel.github.io/penelitian/penelitian-mahasiswa.html" target="_blank" class="sub-card">
+                    <div class="icon-wrap purple"><i class="fas fa-handshake"></i></div>
+                    <h3>Kolaborasi Dosen-Mhs</h3>
+                    <div class="subtitle">Penelitian Bersama</div>
+                    <p>Data publikasi kolaborasi dosen dan mahasiswa sebagai bentuk penguatan kapasitas riset.</p>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i> Buka Halaman</div>
+                </a>
+
+              
+
+                <!-- 5. Penelitian Mahasiswa (Skripsi) - BARU -->
+                <a href="https://pi-iainbabel.github.io/penelitian/skripsi.html" target="_blank" class="sub-card">
+                    <div class="icon-wrap rose"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Penelitian Mahasiswa</h3>
+                    <div class="subtitle">Skripsi &amp; Tugas Akhir</div>
+                    <p>Rekapitulasi penelitian mahasiswa berupa skripsi, tugas akhir, dan publikasi yang dihasilkan.</p>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i> Buka Halaman</div>
+                </a>
+
+            </div>
+        
+
+        <!-- ===== ANALISIS NARATIF ===== -->
+        <section class="bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl p-6 mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-2xl">📝</span>
+                <div>
+                    <h3 class="font-heading font-bold text-white text-sm">Analisis Rekognisi Penelitian</h3>
+                    <p class="text-xs text-slate-400">Ringkasan capaian penelitian prodi</p>
+                </div>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+
+                <p>
+                    Prodi Psikologi Islam telah mengembangkan ekosistem penelitian yang terintegrasi melalui beberapa pilar utama: <strong class="text-gold">Jurnal Psychosophia</strong> sebagai wadah publikasi ilmiah terakreditasi SINTA 3, <strong class="text-gold">Psychosophia Behavioral Lab</strong> sebagai pusat riset perilaku dan inovasi digital, serta berbagai <strong class="text-gold">kerjasama penelitian</strong> dengan institusi nasional dan internasional. Capaian ini menunjukkan komitmen prodi dalam membangun budaya riset yang produktif dan berdampak.
+                </p>
+
+                <p>
+                    <strong class="text-gold">1. Jurnal Psychosophia (SINTA 3):</strong>
+                    Jurnal prodi yang telah terakreditasi SINTA 3 menjadi sarana utama diseminasi hasil penelitian dosen dan mahasiswa. Jurnal ini mempublikasikan riset di bidang psikologi, agama, dan kemanusiaan, serta telah menjalin kolaborasi dengan berbagai peneliti dari dalam dan luar negeri.
+                </p>
+
+                <p>
+                    <strong class="text-gold">2. Psychosophia Behavioral Lab:</strong>
+                    Laboratorium riset ini telah menghasilkan berbagai produk inovatif seperti alat asesmen (Kompas Kampus, RumahHati), chatbot skrining (Teman Sophia), simulator perilaku (Moral Disengagement Hub, Social Norms Simulator), serta buku saku digital. Produk-produk ini tidak hanya menjadi bukti rekognisi penelitian, tetapi juga telah diimplementasikan dalam layanan psikologi dan pengabdian masyarakat.
+                </p>
+
+                <p>
+                    <strong class="text-gold">3. Kerjasama dan Kolaborasi:</strong>
+                    Prodi telah menjalin kerjasama penelitian dengan berbagai institusi, antara lain <strong class="text-white">STISIPOL Pahlawan 12</strong> (pendampingan akreditasi jurnal), <strong class="text-white">UIN Raden Fatah</strong> (kerja sama penelitian), <strong class="text-white">Universitas Muhammadiyah Purwokerto</strong> (seminar internasional dan publikasi), serta <strong class="text-white">IAIN Kudus</strong> (publikasi jurnal Sinta 2). Keterlibatan dalam forum ilmiah nasional dan internasional seperti <strong class="text-white">APPI-HIMPSI, AICOIIS, dan ICOPSY</strong> juga memperkuat rekognisi penelitian prodi di tingkat nasional dan internasional.
+                </p>
+
+                <p>
+                    <strong class="text-gold">4. Rekomendasi Penguatan:</strong>
+                    Untuk meningkatkan rekognisi penelitian, disarankan untuk <strong class="text-white">memperkuat jumlah publikasi internasional</strong> dengan mendorong dosen dan mahasiswa untuk menulis di jurnal terindeks Scopus, <strong class="text-white">mengembangkan produk riset terapan</strong> yang dapat dipatenkan, serta <strong class="text-white">memperluas jejaring kolaborasi penelitian</strong> dengan perguruan tinggi dan lembaga riset di tingkat internasional.
+                </p>
+
+                <p class="text-[10px] text-slate-400 mt-2 border-t border-gold/20 pt-2">
+                    <i class="fas fa-info-circle mr-1"></i> Data ini diolah dari dokumentasi publikasi, laboratorium, dan kerjasama penelitian prodi.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ===== DRIVE LINK ===== -->
+        <section class="card-glass p-6 border-gold/10 bg-gold/5">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <h3 class="font-heading font-bold text-white text-sm flex items-center gap-2">
+                        <i class="fas fa-cloud text-gold"></i> Dokumentasi Lengkap
+                    </h3>
+                    <p class="text-xs text-slate-400">Seluruh dokumen bukti rekognisi penelitian</p>
+                </div>
+                <a href="https://drive.google.com/drive/u/1/folders/1onnzbs8YOHW2hcPVniMSehyzXvtEkyEN"
+                   target="_blank"
+                   class="btn-nav btn-nav-drive text-sm">
+                    <i class="fab fa-google-drive"></i>
+                    Drive Bukti Penelitian
+                    <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="mt-8 pt-4 border-t border-white/5 text-xs text-slate-500 text-center">
+            <i class="fas fa-print mr-1"></i> Terakhir diperbarui: 2025 – Prodi Psikologi Islam
+            <span class="mx-2">·</span>
+            <i class="fas fa-leaf text-gold mr-1"></i> Daun dari Pohon Pengetahuan
+        </div>
+
+    </main>
+
+</body>
+</html>
