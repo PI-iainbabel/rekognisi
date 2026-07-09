@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengakuan Kurikulum & Inovasi Pembelajaran · Psikologi Islam</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            50: '#E8EDF8', 100: '#C5D2F0', 200: '#9DB5E8',
+                            300: '#6F95E0', 400: '#4F7FD8', 500: '#2A5CC4',
+                            600: '#1A3F8F', 700: '#122B6A', 800: '#0B1D45',
+                            900: '#060F28', 950: '#030714',
+                        },
+                        gold: '#D4AF37',
+                        emerald: '#34D399',
+                        sky: '#60A5FA',
+                        rose: '#FB7185',
+                        amber: '#FBBF24',
+                        purple: '#A78BFA',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #060F28;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .glass-nav {
+            background: rgba(11, 29, 69, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(79, 143, 255, 0.15);
+        }
+
+        .btn-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+        }
+        .btn-nav-home {
+            background: rgba(255, 255, 255, 0.04);
+            color: #94a3b8;
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+        .btn-nav-home:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+        .btn-nav-tree {
+            background: rgba(82, 183, 136, 0.06);
+            color: #52B788;
+            border-color: rgba(82, 183, 136, 0.1);
+        }
+        .btn-nav-tree:hover {
+            background: rgba(82, 183, 136, 0.12);
+            border-color: #52B788;
+            transform: translateY(-2px);
+        }
+        .btn-nav-drive {
+            background: rgba(26, 115, 232, 0.08);
+            color: #4F7FD8;
+            border-color: rgba(26, 115, 232, 0.1);
+        }
+        .btn-nav-drive:hover {
+            background: rgba(26, 115, 232, 0.15);
+            border-color: #4F7FD8;
+            transform: translateY(-2px);
+        }
+
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 4px;
+            font-size: 0.8rem;
+            padding: 8px 0;
+        }
+        .breadcrumb a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .breadcrumb a:hover {
+            color: #D4AF37;
+        }
+        .breadcrumb .separator {
+            color: #475569;
+            font-size: 0.6rem;
+            margin: 0 2px;
+        }
+        .breadcrumb .current {
+            color: #e2e8f0;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .breadcrumb .current i {
+            color: #D4AF37;
+            font-size: 0.9rem;
+        }
+
+        .card-glass {
+            background: rgba(11, 29, 69, 0.4);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .card-glass:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-card {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .stat-card:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 40px;
+        }
+
+        .claim-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .claim-item {
+            background: rgba(11, 29, 69, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px 20px;
+            border-left: 3px solid #D4AF37;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .claim-item:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateX(4px);
+        }
+        .claim-item .claim-content {
+            flex: 1;
+        }
+        .claim-item .claim-title {
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .claim-item .claim-desc {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+        .claim-item .claim-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .claim-item .claim-badge.terakreditasi {
+            background: rgba(52, 211, 153, 0.12);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.15);
+        }
+        .claim-item .claim-badge.terstandar {
+            background: rgba(96, 165, 250, 0.12);
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, 0.15);
+        }
+        .claim-item .claim-badge.inovatif {
+            background: rgba(212, 175, 55, 0.12);
+            color: #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .claim-item .claim-badge.terintegrasi {
+            background: rgba(167, 139, 250, 0.12);
+            color: #a78bfa;
+            border: 1px solid rgba(167, 139, 250, 0.15);
+        }
+        .claim-item .claim-badge.berdampak {
+            background: rgba(251, 113, 133, 0.12);
+            color: #fb7185;
+            border: 1px solid rgba(251, 113, 133, 0.15);
+        }
+        .claim-item .claim-link {
+            font-size: 0.7rem;
+            color: #4F7FD8;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        .claim-item .claim-link:hover {
+            color: #D4AF37;
+        }
+
+        .badge-tema {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.55rem;
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.08);
+            color: #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .main-content { padding: 16px; }
+            .claim-item { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================================== -->
+    <!-- NAVBAR DENGAN BREADCRUMB                                   -->
+    <!-- ========================================================== -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between py-3 gap-2">
+
+                <div class="breadcrumb">
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/" title="Kembali ke Home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/struktur-konten.html" title="Kembali ke Diferensiasi Misi">
+                        <i class="fas fa-flag"></i> Diferensiasi Misi
+                    </a>
+                    <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                    <a href="https://pi-iainbabel.github.io/rekognisi/" title="Kembali ke Rekognisi Pendidikan">
+                        <i class="fas fa-graduation-cap"></i> Rekognisi Pendidikan
+                    </a>
+                    <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                    <span class="current">
+                        <i class="fas fa-book-open"></i> Pengakuan Kurikulum &amp; Inovasi Pembelajaran
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap">
+                    <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="btn-nav btn-nav-drive">
+                        <i class="fas fa-folder-open"></i> Drive Bukti
+                    </a>
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/struktur-konten.html" class="btn-nav btn-nav-tree" title="Pohon Pengetahuan">
+                        <i class="fas fa-tree"></i> Tree
+                    </a>
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/" class="btn-nav btn-nav-home" title="Kembali ke Home">
+                        <i class="fas fa-arrow-left"></i> Home
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================================== -->
+    <!-- SPACER                                                     -->
+    <!-- ========================================================== -->
+    <div class="pt-20"></div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- ===== HERO ===== -->
+        <div class="mb-8 text-center">
+            <div class="inline-block px-4 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold tracking-wider mb-4">
+                <i class="fas fa-book-open mr-2"></i> REKOGNISI PENDIDIKAN
+            </div>
+            <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-white flex items-center justify-center gap-3">
+                <i class="fas fa-graduation-cap text-gold"></i> Pengakuan Kurikulum &amp; <span class="text-gold">Inovasi Pembelajaran</span>
+            </h1>
+            <p class="mt-3 text-slate-400 max-w-2xl mx-auto text-sm">
+                Pengakuan dan capaian Program Studi Psikologi Islam dalam pengembangan kurikulum berbasis OBE, MBKM, integrasi nilai Islam, serta inovasi metode dan bahan ajar.
+            </p>
+            <div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
+                <span class="px-4 py-1.5 rounded-full bg-navy-800/60 border border-white/5 text-slate-300">
+                    <i class="fas fa-certificate text-gold mr-1.5"></i> Akreditasi Baik
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-navy-800/60 border border-white/5 text-slate-300">
+                    <i class="fas fa-check-circle text-gold mr-1.5"></i> Standar AP2TPI
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-emerald-400/20 border border-emerald-400/30 text-emerald-300">
+                    <i class="fas fa-flask mr-1.5"></i> Inovasi Pembelajaran
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-sky-400/20 border border-sky-400/30 text-sky-300">
+                    <i class="fas fa-users mr-1.5"></i> MBKM &amp; Tracer Study
+                </span>
+            </div>
+        </div>
+
+        <!-- ===== STATISTIK ===== -->
+        <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-gold">Baik</div>
+                <div class="text-xs text-slate-400">Status Akreditasi</div>
+                <div class="text-[10px] text-slate-500">s.d. Maret 2027</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-sky-400">AP2TPI</div>
+                <div class="text-xs text-slate-400">Standar Kurikulum</div>
+                <div class="text-[10px] text-slate-500">Asosiasi Profesi</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-emerald-400">OBE</div>
+                <div class="text-xs text-slate-400">Pendekatan</div>
+                <div class="text-[10px] text-slate-500">Outcome-Based Education</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-purple-400">MBKM</div>
+                <div class="text-xs text-slate-400">Integrasi</div>
+                <div class="text-[10px] text-slate-500">Merdeka Belajar</div>
+            </div>
+        </section>
+
+        <!-- ===== DAFTAR KLAIM ===== -->
+        <section class="card-glass p-6 border-gold/10 mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <div>
+                    <h2 class="font-heading font-bold text-xl text-white flex items-center gap-2">
+                        <i class="fas fa-list-check text-gold"></i> Daftar Klaim
+                        <span class="text-sm text-slate-400 font-normal">— Pengakuan &amp; Inovasi</span>
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-0.5">Rekapitulasi klaim pengakuan kurikulum dan inovasi pembelajaran</p>
+                </div>
+            </div>
+
+            <div class="claim-grid">
+
+                <!-- A. Pengakuan dan Akreditasi Kurikulum -->
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Akreditasi Nasional</div>
+                        <div class="claim-desc">Terakreditasi <strong>Baik</strong> dari BAN-PT hingga Maret 2027.</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge terakreditasi"><i class="fas fa-check-circle"></i> Terakreditasi</span>
+                        <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Kurikulum sesuai Standar AP2TPI</div>
+                        <div class="claim-desc">Kurikulum prodi disusun mengacu pada standar kompetensi psikolog dari Asosiasi Psikologi Pendidikan Tinggi Indonesia (AP2TPI).</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge terstandar"><i class="fas fa-check-circle"></i> Terstandar</span>
+                        <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Kurikulum Berbasis OBE</div>
+                        <div class="claim-desc">Dokumen kurikulum memuat capaian pembelajaran lulusan (CPL) yang terukur dengan pendekatan <strong>Outcome-Based Education</strong>.</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge terstandar"><i class="fas fa-check-circle"></i> OBE</span>
+                        <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Kurikulum Berbasis MBKM</div>
+                        <div class="claim-desc">Integrasi program <strong>Merdeka Belajar Kampus Merdeka</strong> (magang, pertukaran pelajar, riset) ke dalam struktur kurikulum.</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge terintegrasi"><i class="fas fa-check-circle"></i> MBKM</span>
+                        <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Integrasi Nilai Keislaman</div>
+                        <div class="claim-desc">Kurikulum secara sistematis mengintegrasikan nilai-nilai keislaman dengan ilmu psikologi dalam mata kuliah dan capaian pembelajaran.</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge terintegrasi"><i class="fas fa-check-circle"></i> Islami</span>
+                        <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Kurikulum Modular / Micro‑Credential</div>
+                        <div class="claim-desc">Struktur kurikulum memungkinkan mahasiswa mengambil modul atau sertifikasi digital untuk kompetensi spesifik.</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge inovatif"><i class="fas fa-check-circle"></i> Inovatif</span>
+                        <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <!-- B. Inovasi dalam Proses dan Metode Pembelajaran -->
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Project‑Based &amp; Research‑Based Learning</div>
+                        <div class="claim-desc">Penerapan metode pembelajaran berbasis proyek dan riset dalam berbagai mata kuliah (terdokumentasi dalam RPS).</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge inovatif"><i class="fas fa-check-circle"></i> Inovatif</span>
+                        <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Pembelajaran Diferensiasi</div>
+                        <div class="claim-desc">Metode pembelajaran yang menyesuaikan dengan kebutuhan dan gaya belajar mahasiswa (tercermin dalam RPS).</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge inovatif"><i class="fas fa-check-circle"></i> Inovatif</span>
+                        <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Simulasi dan Praktikum dengan Digital Lab</div>
+                        <div class="claim-desc">Penggunaan <strong>Psychosophia Digital Lab</strong> (simulasi, asesmen, dan alat interaktif) sebagai sarana pembelajaran praktis.</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge inovatif"><i class="fas fa-check-circle"></i> Digital Lab</span>
+                        <a href="https://pi-iainbabel.github.io/psychosophia-portfolio/" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Kunjungi
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Pengembangan Bahan Ajar Inovatif</div>
+                        <div class="claim-desc">Tersedia modul, buku ajar, dan media pembelajaran interaktif yang diakui dan digunakan secara luas.</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge inovatif"><i class="fas fa-check-circle"></i> Inovatif</span>
+                        <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Pembelajaran Daring / Hibrida</div>
+                        <div class="claim-desc">Pengembangan dan pelaksanaan mata kuliah daring atau metode campuran (blended learning) yang inovatif.</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge inovatif"><i class="fas fa-check-circle"></i> Hibrida</span>
+                        <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Umpan Balik Positif dari Stakeholder</div>
+                        <div class="claim-desc">Hasil survei kepuasan mahasiswa, alumni, dan pengguna lulusan menunjukkan pengakuan atas kualitas dan relevansi kurikulum.</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge berdampak"><i class="fas fa-check-circle"></i> Berdampak</span>
+                        <a href="https://pi-iainbabel.github.io/psychosophia-hub/" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-content">
+                        <div class="claim-title">Keberhasilan Lulusan (Tracer Study)</div>
+                        <div class="claim-desc">Data <strong>tracer study</strong> menunjukkan bahwa lulusan kompeten dan relevan dengan kebutuhan dunia kerja.</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="claim-badge berdampak"><i class="fas fa-check-circle"></i> Terlacak</span>
+                        <a href="https://pi-iainbabel.github.io/psychosophia-hub/" target="_blank" class="claim-link">
+                            <i class="fas fa-external-link-alt"></i> Lihat
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== ANALISIS NARATIF ===== -->
+        <section class="bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl p-6 mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-2xl">📝</span>
+                <div>
+                    <h3 class="font-heading font-bold text-white text-sm">Analisis Pengakuan Kurikulum &amp; Inovasi Pembelajaran</h3>
+                    <p class="text-xs text-slate-400">Ringkasan capaian pengakuan dan inovasi</p>
+                </div>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+
+                <p>
+                    Program Studi Psikologi Islam telah mengembangkan kurikulum yang <strong class="text-gold">komprehensif dan adaptif</strong>, dengan pengakuan formal dari berbagai lembaga. Status akreditasi <strong class="text-white">Baik</strong> dari BAN-PT hingga Maret 2027 menjadi fondasi utama yang menegaskan kualitas penyelenggaraan pendidikan. Kurikulum prodi juga telah disusun mengacu pada <strong class="text-white">standar kompetensi psikolog dari AP2TPI</strong>, memastikan bahwa lulusan memiliki kompetensi yang sesuai dengan kebutuhan profesi psikologi di Indonesia.
+                </p>
+
+                <p>
+                    <strong class="text-gold">1. Pengakuan Kurikulum:</strong>
+                    Kurikulum prodi dirancang dengan pendekatan <strong class="text-white">Outcome-Based Education (OBE)</strong>, yang memastikan setiap capaian pembelajaran terukur dan relevan dengan kebutuhan pengguna lulusan. Selain itu, prodi telah mengintegrasikan program <strong class="text-white">Merdeka Belajar Kampus Merdeka (MBKM)</strong> ke dalam struktur kurikulum, memberikan fleksibilitas bagi mahasiswa untuk memperoleh pengalaman belajar di luar kampus melalui magang, pertukaran pelajar, dan riset. Keunggulan lain dari kurikulum prodi adalah <strong class="text-white">integrasi nilai-nilai keislaman</strong> secara sistematis dalam mata kuliah dan capaian pembelajaran, yang menjadi ciri khas dan diferensiasi prodi.
+                </p>
+
+                <p>
+                    <strong class="text-gold">2. Inovasi Pembelajaran:</strong>
+                    Prodi telah menerapkan berbagai inovasi dalam proses pembelajaran, antara lain <strong class="text-white">Project-Based Learning (PjBL)</strong> dan <strong class="text-white">Research-Based Learning (RBL)</strong> yang mendorong mahasiswa untuk aktif dalam proyek dan riset. Metode <strong class="text-white">pembelajaran diferensiasi</strong> juga diterapkan untuk menyesuaikan dengan kebutuhan dan gaya belajar mahasiswa. Penggunaan <strong class="text-white">Psychosophia Digital Lab</strong> sebagai sarana simulasi dan praktikum menjadi bukti nyata pemanfaatan teknologi dalam pembelajaran. Prodi juga telah mengembangkan <strong class="text-white">bahan ajar inovatif</strong> berupa modul, buku ajar, dan media pembelajaran interaktif, serta menyelenggarakan <strong class="text-white">pembelajaran daring/hibrida</strong> yang fleksibel.
+                </p>
+
+                <p>
+                    <strong class="text-gold">3. Dampak dan Keberlanjutan:</strong>
+                    Keberhasilan kurikulum dan inovasi pembelajaran tercermin dari <strong class="text-white">umpan balik positif</strong> dari mahasiswa, alumni, dan pengguna lulusan. Data <strong class="text-white">tracer study</strong> menunjukkan bahwa lulusan prodi kompeten dan relevan dengan kebutuhan dunia kerja. Ke depan, prodi akan terus <strong class="text-white">memperkuat integrasi MBKM</strong>, mengembangkan <strong class="text-white">micro-credential</strong> untuk kompetensi spesifik, serta memanfaatkan <strong class="text-white">Digital Lab</strong> secara lebih luas untuk mendukung pembelajaran berbasis riset dan inovasi.
+                </p>
+
+                <p class="text-[10px] text-slate-400 mt-2 border-t border-gold/20 pt-2">
+                    <i class="fas fa-info-circle mr-1"></i> Data ini diolah dari dokumen kurikulum, akreditasi, dan inovasi pembelajaran Prodi Psikologi Islam.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ===== DRIVE LINK ===== -->
+        <section class="card-glass p-6 border-gold/10 bg-gold/5">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <h3 class="font-heading font-bold text-white text-sm flex items-center gap-2">
+                        <i class="fas fa-cloud text-gold"></i> Dokumentasi Lengkap
+                    </h3>
+                    <p class="text-xs text-slate-400">Seluruh dokumen kurikulum dan inovasi pembelajaran</p>
+                </div>
+                <a href="https://drive.google.com/drive/u/1/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC" 
+                   target="_blank" 
+                   class="btn-nav btn-nav-drive text-sm">
+                    <i class="fab fa-google-drive"></i> 
+                    Drive Kurikulum &amp; Inovasi
+                    <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="mt-8 pt-4 border-t border-white/5 text-xs text-slate-500 text-center">
+            <i class="fas fa-print mr-1"></i> Terakhir diperbarui: 2025 – Prodi Psikologi Islam
+            <span class="mx-2">·</span>
+            <i class="fas fa-leaf text-gold mr-1"></i> Daun dari Pohon Pengetahuan
+        </div>
+
+    </main>
+
+</body>
+</html>
