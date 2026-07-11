@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rekognisi Program Studi · Psikologi Islam</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            50: '#E8EDF8', 100: '#C5D2F0', 200: '#9DB5E8',
+                            300: '#6F95E0', 400: '#4F7FD8', 500: '#2A5CC4',
+                            600: '#1A3F8F', 700: '#122B6A', 800: '#0B1D45',
+                            900: '#060F28', 950: '#030714',
+                        },
+                        gold: '#D4AF37',
+                        emerald: '#34D399',
+                        sky: '#60A5FA',
+                        rose: '#FB7185',
+                        amber: '#FBBF24',
+                        purple: '#A78BFA',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #060F28;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .glass-nav {
+            background: rgba(11, 29, 69, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(79, 143, 255, 0.15);
+        }
+
+        .btn-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+        }
+        .btn-nav-home {
+            background: rgba(255, 255, 255, 0.04);
+            color: #94a3b8;
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+        .btn-nav-home:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+        .btn-nav-tree {
+            background: rgba(82, 183, 136, 0.06);
+            color: #52B788;
+            border-color: rgba(82, 183, 136, 0.1);
+        }
+        .btn-nav-tree:hover {
+            background: rgba(82, 183, 136, 0.12);
+            border-color: #52B788;
+            transform: translateY(-2px);
+        }
+        .btn-nav-drive {
+            background: rgba(26, 115, 232, 0.08);
+            color: #4F7FD8;
+            border-color: rgba(26, 115, 232, 0.1);
+        }
+        .btn-nav-drive:hover {
+            background: rgba(26, 115, 232, 0.15);
+            border-color: #4F7FD8;
+            transform: translateY(-2px);
+        }
+
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 4px;
+            font-size: 0.8rem;
+            padding: 8px 0;
+        }
+        .breadcrumb a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .breadcrumb a:hover {
+            color: #D4AF37;
+        }
+        .breadcrumb .separator {
+            color: #475569;
+            font-size: 0.6rem;
+            margin: 0 2px;
+        }
+        .breadcrumb .current {
+            color: #e2e8f0;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .breadcrumb .current i {
+            color: #D4AF37;
+            font-size: 0.9rem;
+        }
+
+        .card-glass {
+            background: rgba(11, 29, 69, 0.4);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .card-glass:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-card {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .stat-card:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 40px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.7rem;
+        }
+        .table-wrap thead {
+            background: rgba(11, 29, 69, 0.6);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+        }
+        .table-wrap thead th {
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 700;
+            color: #D4AF37;
+            text-transform: uppercase;
+            font-size: 0.6rem;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+        .table-wrap tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.2s ease;
+        }
+        .table-wrap tbody tr:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+        .table-wrap tbody td {
+            padding: 8px 12px;
+            color: #cbd5e1;
+            vertical-align: middle;
+        }
+        .table-wrap tbody td:first-child {
+            font-weight: 600;
+            color: #e2e8f0;
+            text-align: center;
+        }
+        .table-wrap tfoot tr {
+            background: rgba(11, 29, 69, 0.5);
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        .table-wrap tfoot td {
+            padding: 10px 12px;
+            color: #D4AF37;
+            font-weight: 700;
+        }
+
+        .badge-status {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.6rem;
+            font-weight: 600;
+        }
+        .badge-wilayah {
+            background: rgba(251, 191, 36, 0.12);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.15);
+        }
+        .badge-nasional {
+            background: rgba(212, 175, 55, 0.12);
+            color: #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .badge-internasional {
+            background: rgba(96, 165, 250, 0.12);
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, 0.15);
+        }
+
+        .btn-bukti {
+            color: #4F7FD8;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+        .btn-bukti:hover {
+            color: #D4AF37;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .main-content { padding: 16px; }
+            .table-wrap table { font-size: 0.6rem; }
+            .table-wrap thead th, .table-wrap tbody td { padding: 4px 6px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================================== -->
+    <!-- NAVBAR DENGAN BREADCRUMB                                   -->
+    <!-- ========================================================== -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between py-3 gap-2">
+
+                <div class="breadcrumb">
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/" title="Kembali ke Home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/struktur-konten.html" title="Kembali ke Diferensiasi Misi">
+                        <i class="fas fa-flag"></i> Diferensiasi Misi
+                    </a>
+                    <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                    <span class="current">
+                        <i class="fas fa-trophy"></i> Rekognisi Program Studi
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap">
+                    <a href="https://drive.google.com/drive/u/1/folders/1rQrJ5aeyiOdzC3zZVmD_VBbd157ylAdp" target="_blank" class="btn-nav btn-nav-drive">
+                        <i class="fas fa-folder-open"></i> Drive Bukti
+                    </a>
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/struktur-konten.html" class="btn-nav btn-nav-tree" title="Pohon Pengetahuan">
+                        <i class="fas fa-tree"></i> Tree
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================================== -->
+    <!-- SPACER                                                     -->
+    <!-- ========================================================== -->
+    <div class="pt-20"></div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- ===== HERO ===== -->
+        <div class="mb-8 text-center">
+            <div class="inline-block px-4 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold tracking-wider mb-4">
+                <i class="fas fa-trophy mr-2"></i> INDIKATOR 39
+            </div>
+            <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-white flex items-center justify-center gap-3">
+                <i class="fas fa-award text-gold"></i> Rekognisi <span class="text-gold">Program Studi</span>
+            </h1>
+            <p class="mt-3 text-slate-400 max-w-2xl mx-auto text-sm">
+                Pengakuan, penghargaan, dan kepercayaan dari pemerintah, asosiasi profesi, mitra, dan masyarakat atas capaian Program Studi Psikologi Islam sesuai dengan visi keilmuan.
+            </p>
+            <div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
+                <span class="px-4 py-1.5 rounded-full bg-navy-800/60 border border-white/5 text-slate-300">
+                    <i class="fas fa-globe text-gold mr-1.5"></i> 2 Internasional
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-navy-800/60 border border-white/5 text-slate-300">
+                    <i class="fas fa-flag text-gold mr-1.5"></i> 7 Nasional
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-amber-400/20 border border-amber-400/30 text-amber-300">
+                    <i class="fas fa-map-pin mr-1.5"></i> 2 Wilayah
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-emerald-400/20 border border-emerald-400/30 text-emerald-300">
+                    <i class="fas fa-trophy mr-1.5"></i> 11 Total Rekognisi
+                </span>
+            </div>
+        </div>
+
+        <!-- ===== STATISTIK ===== -->
+        <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-gold">11</div>
+                <div class="text-xs text-slate-400">Total Rekognisi</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-sky-400">2</div>
+                <div class="text-xs text-slate-400">Tingkat Internasional</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-gold">7</div>
+                <div class="text-xs text-slate-400">Tingkat Nasional</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-amber-400">2</div>
+                <div class="text-xs text-slate-400">Tingkat Wilayah</div>
+            </div>
+        </section>
+
+        <!-- ===== TABEL REKOGNISI ===== -->
+        <section class="card-glass p-6 border-gold/10 mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <div>
+                    <h2 class="font-heading font-bold text-xl text-white flex items-center gap-2">
+                        <i class="fas fa-list text-gold"></i> Tabel 3.1
+                        <span class="text-sm text-slate-400 font-normal">— Rekognisi Program Studi</span>
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-0.5">Pengakuan dan apresiasi atas capaian prodi sesuai visi keilmuan (Indikator 39)</p>
+                </div>
+            </div>
+
+            <div class="mb-4 p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg text-xs text-amber-400 flex items-center gap-2">
+                <i class="fas fa-info-circle"></i>
+                <span>Rekognisi meliputi akreditasi, penghargaan dari pemerintah/industri/asosiasi profesi, kepercayaan kerjasama strategis, serta pemanfaatan luaran oleh masyarakat/DUDIK sesuai visi keilmuan prodi.</span>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="w-12 text-center">No</th>
+                            <th class="text-left min-w-[180px]">Rekognisi</th>
+                            <th class="text-left min-w-[180px]">Lembaga Pemberi Rekognisi</th>
+                            <th class="text-center min-w-[60px]">Wilayah</th>
+                            <th class="text-center min-w-[60px]">Nasional</th>
+                            <th class="text-center min-w-[60px]">Internasional</th>
+                            <th class="text-center min-w-[60px]">Tahun</th>
+                            <th class="text-center min-w-[60px]">Bukti</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- diisi oleh JavaScript -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="8" class="text-center text-xs text-slate-500">
+                                <i class="fas fa-database mr-1"></i> Total <span id="totalData">0</span> rekognisi tercatat
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== ANALISIS NARATIF ===== -->
+        <section class="bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl p-6 mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-2xl">📝</span>
+                <div>
+                    <h3 class="font-heading font-bold text-white text-sm">Analisis Rekognisi Program Studi</h3>
+                    <p class="text-xs text-slate-400">Ringkasan capaian rekognisi prodi (Indikator 39)</p>
+                </div>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+
+                <p>
+                    Program Studi Psikologi Islam telah memperoleh <strong class="text-gold">11 rekognisi</strong> dalam kurun waktu 2022–2026, mencakup berbagai bentuk pengakuan yang sejalan dengan visi keilmuan prodi, yaitu pengembangan psikologi berbasis nilai-nilai keislaman dan kearifan lokal yang berwawasan global. Rekognisi ini berasal dari berbagai lembaga, mulai dari pemerintah, asosiasi profesi, institusi akademik, hingga masyarakat dan DUDIK.
+                </p>
+
+                <p>
+                    <strong class="text-gold">1. Rekognisi dari Pemerintah dan Lembaga Akreditasi</strong>
+                </p>
+
+                <p>
+                    Prodi telah memperoleh <strong class="text-white">akreditasi Baik</strong> dari BAN-PT (2022–2027) yang menegaskan kualitas penyelenggaraan pendidikan. Selain itu, <strong class="text-white">Jurnal Psychosophia</strong> yang dikelola prodi telah terakreditasi SINTA 3 oleh Kemenristekdikti, menjadi wadah publikasi ilmiah yang diakui secara nasional.
+                </p>
+
+                <p>
+                    <strong class="text-gold">2. Rekognisi dari Asosiasi Profesi dan Jaringan Akademik</strong>
+                </p>
+
+                <p>
+                    Prodi menjalin kerjasama publikasi dengan <strong class="text-white">API-HIMPSI</strong> dan <strong class="text-white">APPI-HIMPSI</strong>, dua asosiasi profesi psikologi terkemuka di Indonesia, yang memperkuat posisi prodi dalam ekosistem keilmuan psikologi nasional. Prodi juga menjadi bagian dari <strong class="text-white">Forum Dekan Psikologi PTKI Se-Indonesia</strong>, yang menunjukkan pengakuan atas peran prodi dalam pengembangan psikologi di lingkungan Perguruan Tinggi Keagamaan Islam.
+                </p>
+
+                <p>
+                    <strong class="text-gold">3. Rekognisi Internasional dan Kerjasama Global</strong>
+                </p>
+
+                <p>
+                    Di tingkat internasional, prodi menjadi <strong class="text-white">mitra publisher Zibeline International Publishing</strong> untuk publikasi pada konferensi internasional (ISPsy 2022, 2023). Dosen dan mahasiswa prodi juga meraih <strong class="text-white">3 medali</strong> dalam kompetisi ICOPSY (Bronze & Silver), yang menunjukkan daya saing global civitas akademika.
+                </p>
+
+                <p>
+                    <strong class="text-gold">4. Rekognisi dari Masyarakat dan DUDIK</strong>
+                </p>
+
+                <p>
+                    Prodi memperoleh kepercayaan dari <strong class="text-white">9 mitra institusi</strong> (sekolah, korporasi, lembaga sosial) untuk layanan asesmen psikologi, serta pemanfaatan <strong class="text-white">21 produk inovasi digital</strong> Psychosophia Behavioral Lab oleh masyarakat dan dunia kerja. Hal ini menunjukkan bahwa luaran prodi tidak hanya diakui secara akademik, tetapi juga dimanfaatkan secara nyata untuk kebutuhan publik.
+                </p>
+
+                <p>
+                    <strong class="text-gold">5. Rekomendasi Penguatan</strong>
+                </p>
+
+                <p>
+                    Untuk meningkatkan rekognisi prodi, disarankan untuk <strong class="text-white">memperluas jejaring internasional</strong> melalui kolaborasi riset dengan perguruan tinggi luar negeri, <strong class="text-white">meningkatkan jumlah publikasi terindeks Scopus</strong>, serta <strong class="text-white">mendokumentasikan secara sistematis</strong> setiap bentuk rekognisi dalam basis data yang terintegrasi untuk mendukung akreditasi dan pelaporan kinerja.
+                </p>
+
+                <p class="text-[10px] text-slate-400 mt-2 border-t border-gold/20 pt-2">
+                    <i class="fas fa-info-circle mr-1"></i> Data ini diolah dari dokumentasi rekognisi prodi 2022–2026.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ===== DRIVE LINK ===== -->
+        <section class="card-glass p-6 border-gold/10 bg-gold/5">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <h3 class="font-heading font-bold text-white text-sm flex items-center gap-2">
+                        <i class="fas fa-cloud text-gold"></i> Dokumentasi Lengkap
+                    </h3>
+                    <p class="text-xs text-slate-400">Seluruh dokumen bukti rekognisi program studi</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1GlugtLcd-Z4Vr97dSSUiZLZiA4jXUbFL" 
+                   target="_blank" 
+                   class="btn-nav btn-nav-drive text-sm">
+                    <i class="fab fa-google-drive"></i> 
+                    Drive Bukti Rekognisi
+                    <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="mt-8 pt-4 border-t border-white/5 text-xs text-slate-500 text-center">
+            <i class="fas fa-print mr-1"></i> Terakhir diperbarui: 2026 – Prodi Psikologi Islam
+            <span class="mx-2">·</span>
+            <i class="fas fa-leaf text-gold mr-1"></i> Daun dari Pohon Pengetahuan
+        </div>
+
+    </main>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                   -->
+    <!-- ============================================================ -->
+    <script>
+        // ===== DATA REKOGNISI PROGRAM STUDI =====
+        let rekognisiData = [
+            {
+                rekognisi: 'Akreditasi Program Studi',
+                lembaga: 'BAN-PT',
+                wilayah: false,
+                nasional: true,
+                internasional: false,
+                tahun: '2022–2027',
+                bukti: 'https://drive.google.com/drive/folders/18RjZ3YqVN2gO2ZGfUHJY0oL6H4rBfZnC'
+            },
+            {
+                rekognisi: 'Jurnal Psychosophia Terakreditasi SINTA 3',
+                lembaga: 'Kemenristekdikti / SINTA',
+                wilayah: false,
+                nasional: true,
+                internasional: false,
+                tahun: '2023–sekarang',
+                bukti: 'https://rumahjurnal.iainsasbabel.ac.id/psc/about'
+            },
+            {
+                rekognisi: 'Mitra Publisher pada Konferensi Internasional',
+                lembaga: 'Zibeline International Publishing',
+                wilayah: false,
+                nasional: false,
+                internasional: true,
+                tahun: '2022–sekarang',
+                bukti: 'https://rumahjurnal.iainsasbabel.ac.id/psc/announcement'
+            },
+            {
+                rekognisi: 'Kerjasama Penelitian dengan UIN Raden Fatah',
+                lembaga: 'LPPM IAIN SAS & LPPM UIN Raden Fatah',
+                wilayah: false,
+                nasional: true,
+                internasional: false,
+                tahun: '2023',
+                bukti: 'https://drive.google.com/drive/folders/1GlugtLcd-Z4Vr97dSSUiZLZiA4jXUbFL'
+            },
+            {
+                rekognisi: 'Kerjasama Pendampingan Jurnal',
+                lembaga: 'STISIPOL Pahlawan 12 Bangka',
+                wilayah: true,
+                nasional: false,
+                internasional: false,
+                tahun: '2023',
+                bukti: 'https://drive.google.com/drive/folders/1GlugtLcd-Z4Vr97dSSUiZLZiA4jXUbFL'
+            },
+            {
+                rekognisi: 'Kerjasama Publikasi dengan API-HIMPSI',
+                lembaga: 'Asosiasi Psikologi Islam (API-HIMPSI)',
+                wilayah: false,
+                nasional: true,
+                internasional: false,
+                tahun: '2022–sekarang',
+                bukti: 'https://jpi.api-himpsi.org'
+            },
+            {
+                rekognisi: 'Kerjasama Publikasi dengan APPI-HIMPSI',
+                lembaga: 'Asosiasi Psikologi Pendidikan Indonesia (APPI-HIMPSI)',
+                wilayah: false,
+                nasional: true,
+                internasional: false,
+                tahun: '2022–sekarang',
+                bukti: 'https://journal.trunojoyo.ac.id/personifikasi'
+            },
+            {
+                rekognisi: 'Kepercayaan Mitra Asesmen Psikologi (9 Institusi)',
+                lembaga: 'SD STKIP M Babel, SD Al-Azhar, SLB Koba, PDAM Tirta Pinang, SMPN 1 Kelapa, SDN 4 Koba, Cordela Hotel, TK Kutilang, PT Timah Agro',
+                wilayah: true,
+                nasional: false,
+                internasional: false,
+                tahun: '2022–2026',
+                bukti: 'https://pi-iainbabel.github.io/rekognisi/rekognisi-pkm.html'
+            },
+            {
+                rekognisi: 'Kerjasama Internasional (AICOIIS / ICOPSY)',
+                lembaga: 'AICOIIS / ICOPSY',
+                wilayah: false,
+                nasional: false,
+                internasional: true,
+                tahun: '2024',
+                bukti: 'https://drive.google.com/drive/folders/1GlugtLcd-Z4Vr97dSSUiZLZiA4jXUbFL'
+            },
+            {
+                rekognisi: 'Psychosophia Behavioral Lab (21 Produk Inovasi)',
+                lembaga: 'Masyarakat / DUDIK',
+                wilayah: true,
+                nasional: false,
+                internasional: false,
+                tahun: '2024–sekarang',
+                bukti: 'https://pi-iainbabel.github.io/psychosophia-portfolio/'
+            },
+            {
+                rekognisi: 'Kerjasama Forum Dekan Psikologi PTKI Se-Indonesia',
+                lembaga: 'Forum Dekan Pengelola Prodi Psikologi PTKI Se-Indonesia',
+                wilayah: false,
+                nasional: true,
+                internasional: false,
+                tahun: '2023',
+                bukti: 'https://pi-iainbabel.github.io/rekognisi/kerjasama.html'
+            }
+        ];
+
+        // ===== RENDER TABEL =====
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+
+            tbody.innerHTML = '';
+            if (rekognisiData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="text-center text-slate-500 py-4">Tidak ada data rekognisi.</td></tr>`;
+                document.getElementById('totalData').textContent = '0';
+                return;
+            }
+
+            rekognisiData.forEach((item, index) => {
+                const tr = document.createElement('tr');
+
+                const wilayahBadge = item.wilayah ? '<span class="badge-status badge-wilayah">✓</span>' : '';
+                const nasionalBadge = item.nasional ? '<span class="badge-status badge-nasional">✓</span>' : '';
+                const internasionalBadge = item.internasional ? '<span class="badge-status badge-internasional">✓</span>' : '';
+
+                const buktiLink = item.bukti && item.bukti !== '#' ?
+                    `<a href="${item.bukti}" target="_blank" class="btn-bukti" title="Buka bukti"><i class="fas fa-external-link-alt"></i></a>` :
+                    `<span class="text-slate-500 text-[10px]">-</span>`;
+
+                tr.innerHTML = `
+                    <td class="text-center font-mono text-gold font-bold">${index + 1}</td>
+                    <td class="text-left text-white text-xs font-medium">${item.rekognisi}</td>
+                    <td class="text-left text-slate-300 text-xs">${item.lembaga}</td>
+                    <td class="text-center">${wilayahBadge}</td>
+                    <td class="text-center">${nasionalBadge}</td>
+                    <td class="text-center">${internasionalBadge}</td>
+                    <td class="text-center text-slate-300 text-xs">${item.tahun}</td>
+                    <td class="text-center">${buktiLink}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('totalData').textContent = rekognisiData.length;
+        }
+
+        // ===== INIT =====
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTable();
+        });
+    </script>
+
+</body>
+</html>
