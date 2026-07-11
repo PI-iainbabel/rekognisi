@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visi Keilmuan & Keunggulan Prodi · Psikologi Islam</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            50: '#E8EDF8', 100: '#C5D2F0', 200: '#9DB5E8',
+                            300: '#6F95E0', 400: '#4F7FD8', 500: '#2A5CC4',
+                            600: '#1A3F8F', 700: '#122B6A', 800: '#0B1D45',
+                            900: '#060F28', 950: '#030714',
+                        },
+                        gold: '#D4AF37',
+                        emerald: '#34D399',
+                        sky: '#60A5FA',
+                        rose: '#FB7185',
+                        amber: '#FBBF24',
+                        purple: '#A78BFA',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #060F28;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .glass-nav {
+            background: rgba(11, 29, 69, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(79, 143, 255, 0.15);
+        }
+
+        .btn-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+        }
+        .btn-nav-home {
+            background: rgba(255, 255, 255, 0.04);
+            color: #94a3b8;
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+        .btn-nav-home:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+        .btn-nav-tree {
+            background: rgba(82, 183, 136, 0.06);
+            color: #52B788;
+            border-color: rgba(82, 183, 136, 0.1);
+        }
+        .btn-nav-tree:hover {
+            background: rgba(82, 183, 136, 0.12);
+            border-color: #52B788;
+            transform: translateY(-2px);
+        }
+
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 4px;
+            font-size: 0.8rem;
+            padding: 8px 0;
+        }
+        .breadcrumb a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .breadcrumb a:hover {
+            color: #D4AF37;
+        }
+        .breadcrumb .separator {
+            color: #475569;
+            font-size: 0.6rem;
+            margin: 0 2px;
+        }
+        .breadcrumb .current {
+            color: #e2e8f0;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .breadcrumb .current i {
+            color: #D4AF37;
+            font-size: 0.9rem;
+        }
+
+        .card-glass {
+            background: rgba(11, 29, 69, 0.4);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .card-glass:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-card {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .stat-card:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 40px;
+        }
+
+        .sub-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .sub-card {
+            background: rgba(11, 29, 69, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px 20px 28px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+        }
+        .sub-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+        .sub-card .icon-wrap {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 14px;
+        }
+        .sub-card .icon-wrap.gold {
+            background: rgba(212, 175, 55, 0.12);
+            color: #D4AF37;
+        }
+        .sub-card .icon-wrap.emerald {
+            background: rgba(52, 211, 153, 0.12);
+            color: #34d399;
+        }
+        .sub-card .icon-wrap.sky {
+            background: rgba(96, 165, 250, 0.12);
+            color: #60a5fa;
+        }
+        .sub-card .icon-wrap.purple {
+            background: rgba(167, 139, 250, 0.12);
+            color: #a78bfa;
+        }
+        .sub-card .icon-wrap.rose {
+            background: rgba(251, 113, 133, 0.12);
+            color: #fb7185;
+        }
+        .sub-card .icon-wrap.amber {
+            background: rgba(251, 191, 36, 0.12);
+            color: #fbbf24;
+        }
+        .sub-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .sub-card .subtitle {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        .sub-card p {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        .sub-card .arrow {
+            margin-top: 14px;
+            font-size: 0.8rem;
+            color: #475569;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sub-card:hover .arrow {
+            color: #D4AF37;
+            transform: translateX(4px);
+        }
+
+        .badge-tema {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.55rem;
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.08);
+            color: #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .vision-item {
+            background: rgba(11, 29, 69, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px 24px;
+            border-left: 3px solid #D4AF37;
+            transition: all 0.3s ease;
+        }
+        .vision-item:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateX(4px);
+        }
+        .vision-item .label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #D4AF37;
+        }
+        .vision-item .text {
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            margin-top: 4px;
+        }
+
+        .badge-keunggulan {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.08);
+            color: #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .main-content { padding: 16px; }
+            .sub-card-grid { grid-template-columns: 1fr; }
+            .vision-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================================== -->
+    <!-- NAVBAR DENGAN BREADCRUMB                                   -->
+    <!-- ========================================================== -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between py-3 gap-2">
+
+                <div class="breadcrumb">
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/" title="Kembali ke Home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/struktur-konten.html" title="Kembali ke Diferensiasi Misi">
+                        <i class="fas fa-flag"></i> Diferensiasi Misi
+                    </a>
+                    <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                    <span class="current">
+                        <i class="fas fa-bullseye"></i> Visi Keilmuan & Keunggulan Prodi
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap">
+                    <a href="https://pi-iainbabel.github.io/psychosophia-hub/" class="btn-nav btn-nav-home" title="Kembali ke Home">
+                    <i class="fas fa-arrow-left"></i> Home
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================================== -->
+    <!-- SPACER                                                     -->
+    <!-- ========================================================== -->
+    <div class="pt-20"></div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- ===== HERO ===== -->
+        <div class="mb-8 text-center">
+            <div class="inline-block px-4 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold tracking-wider mb-4">
+                <i class="fas fa-bullseye mr-2"></i> DIFERENSIASI MISI
+            </div>
+            <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-white flex items-center justify-center gap-3">
+                <i class="fas fa-rocket text-gold"></i> Visi Keilmuan &amp; <span class="text-gold">Keunggulan Prodi</span>
+            </h1>
+            <p class="mt-3 text-slate-400 max-w-2xl mx-auto text-sm">
+                Visi, misi, tujuan, dan keunggulan kompetitif Program Studi Psikologi Islam — fondasi diferensiasi dalam pengembangan psikologi berbasis nilai-nilai keislaman dan kearifan lokal.
+            </p>
+            <div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
+                <span class="px-4 py-1.5 rounded-full bg-navy-800/60 border border-white/5 text-slate-300">
+                    <i class="fas fa-graduation-cap text-gold mr-1.5"></i> 6 Kompetensi Lulusan
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-navy-800/60 border border-white/5 text-slate-300">
+                    <i class="fas fa-flask text-gold mr-1.5"></i> 3 Unit Fungsional
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-emerald-400/20 border border-emerald-400/30 text-emerald-300">
+                    <i class="fas fa-trophy mr-1.5"></i> 21 Produk Inovasi
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-sky-400/20 border border-sky-400/30 text-sky-300">
+                    <i class="fas fa-road mr-1.5"></i> 11 Kluster Riset
+                </span>
+            </div>
+        </div>
+
+        <!-- ===== STATISTIK ===== -->
+        <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-gold">Ψ</div>
+                <div class="text-xs text-slate-400">Visi Keilmuan</div>
+                <div class="text-[10px] text-slate-500">Integrasi Islam & Psikologi</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-sky-400">6</div>
+                <div class="text-xs text-slate-400">Kompetensi Lulusan</div>
+                <div class="text-[10px] text-slate-500">Capaian Pembelajaran</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-emerald-400">3</div>
+                <div class="text-xs text-slate-400">Unit Fungsional</div>
+                <div class="text-[10px] text-slate-500">Layanan Terpadu</div>
+            </div>
+            <div class="stat-card bg-navy-800/30 rounded-xl p-4 text-center border border-white/5">
+                <div class="text-2xl font-bold text-amber-400">11</div>
+                <div class="text-xs text-slate-400">Kluster Roadmap</div>
+                <div class="text-[10px] text-slate-500">Riset & Inovasi</div>
+            </div>
+        </section>
+
+        <!-- ===== VISI, MISI, TUJUAN ===== -->
+        <section class="card-glass p-6 border-gold/10 mb-8">
+            <h2 class="font-heading font-bold text-xl text-white flex items-center gap-2 mb-4">
+                <i class="fas fa-flag text-gold"></i> Visi, Misi &amp; Tujuan
+            </h2>
+            <div class="vision-grid">
+                <div class="vision-item">
+                    <div class="label"><i class="fas fa-eye text-gold mr-1"></i> Visi</div>
+                    <div class="text">Menyelenggarakan pendidikan sarjana psikologi untuk menghasilkan lulusan yang <strong class="text-gold">unggul, religius, dan profesional</strong> berdasarkan <strong class="text-gold">nilai-nilai Keislaman.</strong></div>
+                </div>
+                <div class="vision-item" style="border-left-color: #60A5FA;">
+                    <div class="label" style="color:#60A5FA;"><i class="fas fa-list-check text-sky-400 mr-1"></i> Misi</div>
+                    <div class="text text-sm">
+                        <ul class="list-disc list-inside space-y-1 text-slate-300">
+                            <li>Menyelenggarakan pendidikan psikologi yang mengintegrasikan nilai-nilai Islam dan kearifan lokal.</li>
+                            <li>Melakukan penelitian dan inovasi di bidang psikologi yang relevan dengan kebutuhan masyarakat.</li>
+                            <li>Memberikan layanan psikologi terpadu berbasis nilai Islam dan pemberdayaan masyarakat.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="vision-item" style="border-left-color: #34D399; grid-column: 1 / -1;">
+                    <div class="label" style="color:#34D399;"><i class="fas fa-bullseye text-emerald-400 mr-1"></i> Tujuan</div>
+                    <div class="text text-sm">
+                        <ul class="list-disc list-inside space-y-1 text-slate-300">
+                            <li>Menghasilkan lulusan yang kompeten di bidang psikologi dengan integritas keislaman.</li>
+                            <li>Menghasilkan penelitian dan inovasi yang berdampak pada pengembangan keilmuan dan masyarakat.</li>
+                            <li>Membangun ekosistem layanan psikologi yang profesional dan berkelanjutan.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== KEUNGGULAN PRODI ===== -->
+        <section class="card-glass p-6 border-gold/10 mb-8">
+            <h2 class="font-heading font-bold text-xl text-white flex items-center gap-2 mb-4">
+                <i class="fas fa-star text-gold"></i> Keunggulan Program Studi
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-navy-800/30 rounded-xl p-4 border border-white/5 text-center">
+                    <div class="text-3xl mb-2">🧠</div>
+                    <h4 class="font-bold text-white text-sm">Integrasi Islam & Psikologi</h4>
+                    <p class="text-xs text-slate-400 mt-1">Kurikulum berbasis nilai-nilai keislaman yang terintegrasi dalam capaian pembelajaran dan metode pengajaran.</p>
+                </div>
+                <div class="bg-navy-800/30 rounded-xl p-4 border border-white/5 text-center">
+                    <div class="text-3xl mb-2">🔬</div>
+                    <h4 class="font-bold text-white text-sm">Psychosophia Behavioral Lab</h4>
+                    <p class="text-xs text-slate-400 mt-1">21 produk inovasi digital berbasis sains perilaku untuk asesmen, simulasi, dan intervensi psikososial.</p>
+                </div>
+                <div class="bg-navy-800/30 rounded-xl p-4 border border-white/5 text-center">
+                    <div class="text-3xl mb-2">📚</div>
+                    <h4 class="font-bold text-white text-sm">Jurnal SINTA 3</h4>
+                    <p class="text-xs text-slate-400 mt-1">Psychosophia: Journal of Psychology, Religion and Humanity — wadah publikasi ilmiah terakreditasi.</p>
+                </div>
+                <div class="bg-navy-800/30 rounded-xl p-4 border border-white/5 text-center">
+                    <div class="text-3xl mb-2">🤝</div>
+                    <h4 class="font-bold text-white text-sm">Layanan Psychosophia</h4>
+                    <p class="text-xs text-slate-400 mt-1">Unit layanan psikologi terpadu dengan 4 psikolog tersertifikasi dan 9 mitra layanan.</p>
+                </div>
+                <div class="bg-navy-800/30 rounded-xl p-4 border border-white/5 text-center">
+                    <div class="text-3xl mb-2">🌏</div>
+                    <h4 class="font-bold text-white text-sm">Rekognisi Nasional & Internasional</h4>
+                    <p class="text-xs text-slate-400 mt-1">35 rekognisi dosen (3 internasional, 6 nasional, 26 wilayah) dan 3 medali kompetisi internasional.</p>
+                </div>
+                <div class="bg-navy-800/30 rounded-xl p-4 border border-white/5 text-center">
+                    <div class="text-3xl mb-2">📊</div>
+                    <h4 class="font-bold text-white text-sm">Roadmap Riset 2024–2028</h4>
+                    <p class="text-xs text-slate-400 mt-1">11 kluster riset terarah dalam bidang psikologi, pengabdian, dan inovasi berbasis nilai Islam dan kearifan lokal.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SUB-CARD NAVIGASI ===== -->
+        <section class="card-glass p-6 border-gold/10 mb-8">
+            <h3 class="font-heading font-bold text-white text-sm mb-4 flex items-center gap-2">
+                <i class="fas fa-compass text-gold"></i> Jelajahi Komponen Keunggulan
+            </h3>
+            <div class="sub-card-grid">
+
+                <!-- 1. Profil Lulusan -->
+                <a href="https://pi-iainbabel.github.io/profil-dan-rekam-jejak-akademis-lulusan/" target="_blank" class="sub-card">
+                    <div class="icon-wrap gold"><i class="fas fa-user-graduate"></i></div>
+                    <h3>Profil Lulusan</h3>
+                    <div class="subtitle">Kompetensi &amp; Capaian</div>
+                    <p>Profil dan kompetensi lulusan yang dihasilkan prodi, mencakup 6 kompetensi utama sebagai psikolog dan praktisi psikologi berbasis Islam.</p>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i> Buka Halaman</div>
+                </a>
+
+                <!-- 2. Kurikulum & Inovasi Pembelajaran -->
+                <a href="https://pi-iainbabel.github.io/kurikulum/" target="_blank" class="sub-card">
+                    <div class="icon-wrap sky"><i class="fas fa-book-open"></i></div>
+                    <h3>Kurikulum &amp; Inovasi</h3>
+                    <div class="subtitle">OBE, MBKM &amp; Integrasi Islam</div>
+                    <p>Kurikulum berbasis OBE, MBKM, integrasi nilai Islam, standar AP2TPI dan K2P-PTKI, serta inovasi pembelajaran.</p>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i> Buka Halaman</div>
+                </a>
+
+                <!-- 3. Digital Lab -->
+                <a href="https://pi-iainbabel.github.io/psychosophia-portfolio/" target="_blank" class="sub-card">
+                    <div class="icon-wrap emerald"><i class="fas fa-microchip"></i></div>
+                    <h3>Psychosophia Behavioral Lab</h3>
+                    <div class="subtitle">21 Produk Inovasi Digital</div>
+                    <p>Prototipe aplikasi dan alat interaktif berbasis sains perilaku untuk deteksi dini, simulasi, dan intervensi psikososial.</p>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i> Buka Halaman</div>
+                </a>
+
+                <!-- 4. Rekognisi -->
+                <a href="https://pi-iainbabel.github.io/rekognisi/" target="_blank" class="sub-card">
+                    <div class="icon-wrap amber"><i class="fas fa-trophy"></i></div>
+                    <h3>Rekognisi Prodi</h3>
+                    <div class="subtitle">Pengakuan &amp; Apresiasi</div>
+                    <p>Rekognisi dalam bidang pendidikan, penelitian, pengabdian, inovasi, dan rekognisi dosen serta kerjasama.</p>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i> Buka Halaman</div>
+                </a>
+
+                <!-- 5. Roadmap Riset & PkM -->
+                <a href="https://pi-iainbabel.github.io/riset-pkm/" target="_blank" class="sub-card">
+                    <div class="icon-wrap purple"><i class="fas fa-road"></i></div>
+                    <h3>Roadmap Riset &amp; PkM</h3>
+                    <div class="subtitle">2024–2028</div>
+                    <p>Peta jalan penelitian, pengabdian, dan inovasi berbasis 11 kluster prioritas dan nilai-nilai keislaman.</p>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i> Buka Halaman</div>
+                </a>
+
+                <!-- 6. Kerjasama -->
+                <a href="https://pi-iainbabel.github.io/rekognisi/kerjasama.html" target="_blank" class="sub-card">
+                    <div class="icon-wrap rose"><i class="fas fa-handshake"></i></div>
+                    <h3>Kerjasama &amp; Mitra</h3>
+                    <div class="subtitle">20+ Mitra Kerjasama</div>
+                    <p>Rekapitulasi kerjasama dan kemitraan dalam tiga bidang utama: Pendidikan, Penelitian, dan Pengabdian kepada Masyarakat.</p>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i> Buka Halaman</div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ===== ANALISIS NARATIF ===== -->
+        <section class="bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl p-6 mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-2xl">📝</span>
+                <div>
+                    <h3 class="font-heading font-bold text-white text-sm">Analisis Visi Keilmuan &amp; Keunggulan Prodi</h3>
+                    <p class="text-xs text-slate-400">Fondasi diferensiasi dan keunggulan kompetitif</p>
+                </div>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+
+                <p>
+                    Program Studi Psikologi Islam memiliki <strong class="text-gold">visi keilmuan yang kuat</strong> sebagai pusat unggulan dalam pengembangan psikologi berbasis Islam dan kearifan lokal yang berwawasan global. Visi ini menjadi fondasi bagi seluruh kegiatan akademik, penelitian, dan pengabdian masyarakat, serta menjadi pembeda (diferensiasi) prodi di tengah persaingan antar program studi psikologi di Indonesia. Diferensiasi ini diwujudkan melalui tiga pilar utama: <strong class="text-white">integrasi nilai Islam dalam kurikulum dan riset</strong>, <strong class="text-white">pengembangan layanan psikologi terpadu melalui Psychosophia</strong>, serta <strong class="text-white">inovasi digital berbasis sains perilaku</strong> melalui Psychosophia Behavioral Lab (Digital Lab).
+                </p>
+
+                <p>
+                    <strong class="text-gold">1. Integrasi Nilai Islam dan Kearifan Lokal dalam Kurikulum dan Riset</strong>
+                </p>
+
+                <p>
+                    Kurikulum prodi dirancang dengan pendekatan <strong class="text-white">Outcome-Based Education (OBE)</strong> dan <strong class="text-white">Merdeka Belajar Kampus Merdeka (MBKM)</strong>, serta mengacu pada standar kompetensi <strong class="text-white">AP2TPI</strong> dan <strong class="text-white">K2P-PTKI</strong>. Nilai-nilai keislaman diintegrasikan secara sistematis dalam mata kuliah dan capaian pembelajaran, menjadikan lulusan yang tidak hanya kompeten secara psikologis, tetapi juga memiliki integritas dan wawasan keislaman. Roadmap riset 2024–2028 dengan <strong class="text-white">11 kluster prioritas</strong>—mulai dari perkembangan anak, keluarga, digital, positive psychology, psikologi Islam, hingga sosial dan indigenous—menjadi panduan bagi dosen dan mahasiswa dalam menghasilkan penelitian yang relevan dan berdampak.
+                </p>
+
+                <p>
+                    <strong class="text-gold">2. Layanan Psikologi Terpadu — Psychosophia</strong>
+                </p>
+
+                <p>
+                    Psychosophia merupakan unit layanan psikologi terpadu yang mengintegrasikan <strong class="text-white">3 unit fungsional</strong>: Assessment, Counseling & Training; Behavioral Lab Research & Intervention; serta Publication & Knowledge. Dengan dukungan <strong class="text-white">4 psikolog tersertifikasi</strong> dan <strong class="text-white">9 mitra layanan</strong>, Psychosophia telah menjalankan berbagai kegiatan asesmen, konseling, dan pelatihan bagi institusi pendidikan, korporasi, dan masyarakat. Capaian ini menjadi bukti nyata kontribusi prodi dalam pemberdayaan masyarakat dan penguatan ekosistem psikologi di tingkat lokal.
+                </p>
+
+                <p>
+                    <strong class="text-gold">3. Inovasi Digital — Psychosophia Behavioral Lab</strong>
+                </p>
+
+                <p>
+                    Psychosophia Behavioral Lab merupakan wadah inovasi yang mengintegrasikan <strong class="text-white">21 produk digital</strong> dalam 5 kategori: Assessment & Screening, Simulasi & Riset Perilaku, Edukasi & Buku Saku, Chatbot, dan Visualisasi Data & Offline Tool. Produk-produk ini dikembangkan berbasis teori psikologi terkemuka dan dirancang untuk aplikasi praktis dalam deteksi dini, intervensi, dan riset perilaku. Inovasi ini menunjukkan kapasitas prodi dalam mentransformasi pengetahuan psikologi menjadi alat yang aplikatif dan mudah diakses.
+                </p>
+
+                <p>
+                    <strong class="text-gold">4. Rekognisi dan Capaian</strong>
+                </p>
+
+                <p>
+                    Keunggulan prodi juga tercermin dari berbagai rekognisi yang diperoleh, antara lain <strong class="text-white">35 rekognisi dosen</strong> (3 internasional, 6 nasional, 26 wilayah), <strong class="text-white">akreditasi Baik</strong> dari BAN-PT, <strong class="text-white">jurnal SINTA 3</strong> (Psychosophia), serta <strong class="text-white">3 medali kompetisi internasional</strong> (ICOPSY Bronze & Silver). Selain itu, prodi juga memiliki <strong class="text-white">20+ kerjasama</strong> dengan berbagai institusi di bidang pendidikan, penelitian, dan pengabdian masyarakat, yang memperkuat jejaring dan dampak layanan.
+                </p>
+
+                <p>
+                    <strong class="text-gold">5. Proyeksi dan Rencana Penguatan</strong>
+                </p>
+
+                <p>
+                    Ke depan, Prodi Psikologi Islam akan terus memperkuat <strong class="text-white">integrasi nilai Islam dan kearifan lokal</strong> dalam setiap aspek tridharma, memperluas jejaring kemitraan di tingkat nasional dan internasional, serta mengembangkan <strong class="text-white">produk inovasi digital</strong> yang lebih terintegrasi dengan layanan psikologi. Prodi juga akan meningkatkan <strong class="text-white">publikasi internasional</strong> dan <strong class="text-white">rekognisi global</strong> melalui partisipasi dalam forum ilmiah dan kolaborasi riset dengan perguruan tinggi luar negeri.
+                </p>
+
+                <p class="text-[10px] text-slate-400 mt-2 border-t border-gold/20 pt-2">
+                    <i class="fas fa-info-circle mr-1"></i> Data ini diolah dari dokumen visi, kurikulum, roadmap, dan portfolio layanan prodi.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="mt-8 pt-4 border-t border-white/5 text-xs text-slate-500 text-center">
+            <i class="fas fa-print mr-1"></i> Terakhir diperbarui: 2025 – Prodi Psikologi Islam
+            <span class="mx-2">·</span>
+            <i class="fas fa-leaf text-gold mr-1"></i> Daun dari Pohon Pengetahuan
+        </div>
+
+    </main>
+
+</body>
+</html>
